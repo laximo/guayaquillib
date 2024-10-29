@@ -98,10 +98,13 @@ class GroupObject extends BaseObject
         $this->name = (string)$data['name'];
         $this->quickGroupId = (string)$data['quickgroupid'];
         $this->synonyms = (string)$data['synonyms'];
-        $children = $data->children();
 
-        foreach ($children->row as $child) {
-            $this->childGroups[] = new GroupObject($child);
+        if ($data->count()) {
+            $children = $data->children();
+
+            foreach ($children->row as $child) {
+                $this->childGroups[] = new GroupObject($child);
+            }
         }
     }
 }
