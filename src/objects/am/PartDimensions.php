@@ -48,6 +48,9 @@ class PartDimensions extends BaseObject
 
     protected function fromXml(SimpleXMLElement $data)
     {
-        list($this->d1, $this->d2, $this->d3) = explode('X', $data);
+        $parts = explode('X', (string)$data);
+        $this->d1 = isset($parts[0]) ? (float)$parts[0] : 0.0;
+        $this->d2 = isset($parts[1]) ? (float)$parts[1] : 0.0;
+        $this->d3 = isset($parts[2]) ? (float)$parts[2] : 0.0;
     }
 }

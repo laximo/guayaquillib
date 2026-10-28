@@ -12,7 +12,7 @@ abstract class BaseObject
      * @param SimpleXMLElement|null $data
      * @throws Exception
      */
-    public function __construct(SimpleXMLElement $data = null)
+    public function __construct(?SimpleXMLElement $data = null)
     {
         if (is_null($data)) {
             throw new Exception('Empty data');

@@ -36,6 +36,6 @@ class WizardStepOptionObject extends BaseObject
     protected function fromXml(SimpleXMLElement $data)
     {
         $this->key = (string)$data['key'];
-        $this->value = html_entity_decode($data['value']);
+        $this->value = html_entity_decode((string)$data['value']);
     }
 }

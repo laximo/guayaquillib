@@ -189,6 +189,10 @@ class CatalogObject extends BaseObject
 
     public function permissionGranted($permission): bool
     {
+        if (!is_array($this->permissions)) {
+            return false;
+        }
+
         return array_key_exists($permission, $this->permissions);
     }
 

@@ -65,8 +65,9 @@ abstract class RequestBase
             $xmlString = $this->soap->queryData($query, $service);
         } catch (SoapFault $ex) {
             if (substr($ex->getMessage(), 0, 2) == 'E_') {
-                list($reason, $message) = explode(':', $ex->getMessage(), 2);
-                switch (trim($reason)) {
+                $parts = explode(':', $ex->getMessage(), 2);
+                $reason = isset($parts[0]) ? trim($parts[0]) : '';
+                switch ($reason) {
                     case 'E_CATALOGNOTEXISTS':
                         throw new CatalogNotExistsException($ex->getMessage());
                     case 'E_INVALIDREQUEST':

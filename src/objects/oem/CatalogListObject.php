@@ -54,12 +54,16 @@ class CatalogListObject extends BaseObject
             $this->catalogs = [];
         }
 
+        $vinExample = 'WAUZZZ4M6JD010702';
+        $frameExample = 'XZU423-0001026';
+
+        if (count($this->catalogs) === 0) {
+            return [$vinExample, $frameExample];
+        }
+
         $rand = rand(1, count($this->catalogs));
 
         $count = 0;
-
-        $vinExample = 'WAUZZZ4M6JD010702';
-        $frameExample = 'XZU423-0001026';
 
         foreach ($this->catalogs as $catalog) {
             $count++;
