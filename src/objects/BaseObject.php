@@ -25,4 +25,24 @@ abstract class BaseObject
      * @param SimpleXMLElement $data
      */
     abstract protected function fromXml(SimpleXMLElement $data);
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $data = [];
+        foreach ($this as $key => $value) {
+            if ($value instanceof BaseObject) {
+                $data[$key] = $value->toArray();
+            } elseif (is_array($value)) {
+                $data[$key] = array_map(function ($item) {
+                    return ($item instanceof BaseObject) ? $item->toArray() : $item;
+                }, $value);
+            } else {
+                $data[$key] = $value;
+            }
+        }
+        return $data;
+    }
 }
